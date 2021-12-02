@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.julia.lab3.client.dto.BetResult;
 import org.julia.lab3.client.dto.CasinoAccount;
 
@@ -39,7 +40,7 @@ public class CasinoClient {
     /**
      * /play{Mode}?id={playerID}&bet={amountOfMoney}&number={theNumberYouBetOn}.
      */
-    public BetResult play(CasinoMode mode, int bet, int theNumberYouBetOn) throws IOException {
+    public BetResult play(CasinoMode mode, int bet, long theNumberYouBetOn) throws IOException {
         BetResult ret = null;
         ObjectMapper mapper = new ObjectMapper();
         try (CloseableHttpClient client = HttpClients.createDefault()) {
@@ -47,8 +48,12 @@ public class CasinoClient {
             HttpGet request = new HttpGet(HOST + "casino/play" + mode.mode + "?id=" + playerId +
                     "&bet=" + bet + "&number=" + theNumberYouBetOn);
 
-            ret = client.execute(request, httpResponse ->
-                    mapper.readValue(httpResponse.getEntity().getContent(), BetResult.class));
+
+            ret = client.execute(request, httpResponse -> {
+                String outPut = EntityUtils.toString(httpResponse.getEntity());
+                System.out.println(outPut);
+                return mapper.readValue(outPut, BetResult.class);
+            });
 
             System.out.println("result of bet operation:\n" + ret);
         }

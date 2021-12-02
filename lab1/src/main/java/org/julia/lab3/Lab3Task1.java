@@ -21,9 +21,9 @@ public class Lab3Task1 {
         int lstVal = 0;
         for (int i = 0; i < 4; i++) {
             BetResult res = client.play(CasinoMode.LGC, 1, 0);
-            results.add(res.getRealNumber());
+            results.add((int)res.getRealNumberAsInt());
             money = res.getAccount().getMoney();
-            lstVal = res.getRealNumber();
+            lstVal = (int)res.getRealNumberAsInt();
         }
 
         Set<Long> aCandidates = getACandidates(results);
@@ -39,7 +39,7 @@ public class Lab3Task1 {
             int next = calculateNext(lstVal, correctValues.a, correctValues.c);
             BetResult res = client.play(CasinoMode.LGC, (int) money, next);
             money = res.getAccount().getMoney();
-            lstVal = res.getRealNumber();
+            lstVal = res.getRealNumberAsInt();
         } while (money < 1_000_000);
         System.out.println("money=" + money);
     }

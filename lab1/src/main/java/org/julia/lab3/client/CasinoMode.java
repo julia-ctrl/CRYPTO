@@ -1,7 +1,8 @@
 package org.julia.lab3.client;
 
 public enum CasinoMode {
-    LGC("Lcg");
+    LGC("Lcg"),
+    MT("Mt");
     final String mode;
 
     CasinoMode(String mode) {
