@@ -1,9 +1,9 @@
 package org.julia.lab3;
 
-import org.apache.commons.math3.random.MersenneTwister;
 import org.julia.lab3.client.CasinoClient;
 import org.julia.lab3.client.CasinoMode;
 import org.julia.lab3.client.dto.BetResult;
+import org.julia.lab3.client.utils.Mt19937Rnd;
 
 
 public class Lab3Task2 {
@@ -15,16 +15,10 @@ public class Lab3Task2 {
         long end = System.currentTimeMillis() / 1000;
 
         final int marginError = 10;//ten seconds
-        MersenneTwister mtOnServer = null;
+        Mt19937Rnd mtOnServer = null;
         for (long timestamp = start - marginError; timestamp < end + marginError; timestamp++) {
-            MersenneTwister mt = new MersenneTwister((int) timestamp) {
-                @Override
-                public long nextLong() {
-                    return Integer.toUnsignedLong(this.next(64));
-                }
-            };
-
-            if (realNumber == mt.nextLong()) {
+            Mt19937Rnd mt = new Mt19937Rnd((int) timestamp);
+            if (realNumber == mt.next()) {
                 mtOnServer = mt;
                 break;
             }
@@ -36,7 +30,7 @@ public class Lab3Task2 {
 
         long money;
         do {
-            long next = mtOnServer.nextLong();
+            long next = mtOnServer.next();
             BetResult res = client.play(CasinoMode.MT, 100, next);
             money = res.getAccount().getMoney();
         } while (money < 1_000_000);

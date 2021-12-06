@@ -11,7 +11,6 @@ import org.julia.lab3.client.dto.BetResult;
 import org.julia.lab3.client.dto.CasinoAccount;
 
 public class CasinoClient {
-    protected static final String LOST_MESSAGE = "You lost this time";
     private static String HOST = "http://95.217.177.249/";
     private final String playerId;
 
@@ -30,8 +29,11 @@ public class CasinoClient {
 
             HttpGet request = new HttpGet(HOST + "casino/createacc?id=" + playerId);
 
-            CasinoAccount response = client.execute(request, httpResponse ->
-                    mapper.readValue(httpResponse.getEntity().getContent(), CasinoAccount.class));
+            CasinoAccount response = client.execute(request, httpResponse -> {
+                String outPut = EntityUtils.toString(httpResponse.getEntity());
+                System.out.println(outPut);
+                return mapper.readValue(outPut, CasinoAccount.class);
+            });
 
             System.out.println("result of Register operation:\n" + response);
         }
@@ -58,9 +60,5 @@ public class CasinoClient {
             System.out.println("result of bet operation:\n" + ret);
         }
         return ret;
-    }
-
-    boolean isWin(BetResult result) {
-        return !result.getMessage().equals(LOST_MESSAGE);
     }
 }
