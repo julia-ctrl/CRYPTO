@@ -5,11 +5,16 @@ import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class LabUtils {
     public static String resourceToString(String path) throws URISyntaxException, IOException {
         byte[] bytes = Files.readAllBytes(Paths.get(LabUtils.class.getResource(path).toURI()));
         return new String(bytes, StandardCharsets.UTF_8);
+    }
+
+    public static List<String> resourceToLines(String path) throws URISyntaxException, IOException {
+        return Files.readAllLines(Paths.get(LabUtils.class.getResource(path).toURI()));
     }
 
     public static byte[] decodeXor(byte[] encodedArray, byte[] key) {
