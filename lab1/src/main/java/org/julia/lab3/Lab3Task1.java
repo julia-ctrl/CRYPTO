@@ -46,20 +46,9 @@ public class Lab3Task1 {
 
     private static Set<Long> getACandidates(List<Integer> results) {
         Set<Long> aCandidates = new HashSet<>();
-        /*//comment to calculate
+        //comment to calculate
         aCandidates.addAll(Arrays.asList(17181533709L, 1664525L, -4293302771L, 4296631821L, -8588270067L, 8591599117L,
-                -12883237363L, 12886566413L, -17178204659L));*/
-        //nextRes=(a * _last + c) % m
-        /*
-        x2=(a * x1 + c) % m = (z1 * m + x2) % m
-        a * x1 + c= z1 * m + x2
-        x3=(a * x2 + c) % m = (z2 * m + x3) % m
-        a * x2 + c = z2 * m + x3
-         (a * x1 + c) - (a * x2 + c) = (z1 * m + x2) - (z2 * m + x3)
-         a * x1 - a * x2 = (z1 -z2 )* m + x2 - x3
-        a = ((z1 -z2)* m + x2 - x3) / (x1 - x2); (z1 -z2) = Z
-        a = (Z* m + x2 - x3) / (x1 - x2) (a - int) Находим такое зет при котором остача от деления 0
-         */
+                -12883237363L, 12886566413L, -17178204659L));
         if (!aCandidates.isEmpty()) {
             return aCandidates;
         }
@@ -80,7 +69,7 @@ public class Lab3Task1 {
             if (aCandidates.isEmpty()) {
                 aCandidates = aCandidatesForZ;
             } else {
-                aCandidates.retainAll(aCandidatesForZ); // remain only reaping values in both list
+                aCandidates.retainAll(aCandidatesForZ);
             }
         }
         return aCandidates;

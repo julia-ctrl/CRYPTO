@@ -26,9 +26,7 @@ public class Lab1Task3 {
             String keyStr = passwordIndexesList.stream()
                     .map(i -> new String(new char[]{keyAlphabet.charAt(i)})).collect(Collectors.joining(""));
 
-
             byte[] key = keyStr.getBytes(StandardCharsets.UTF_8);
-            System.out.println(keyStr);
 
             byte[] decodedArray = LabUtils.decodeXor(encodedArray, key);
             String candidate = new String(decodedArray, StandardCharsets.UTF_8);

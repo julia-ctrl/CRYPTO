@@ -11,6 +11,7 @@ import org.julia.lab3.client.dto.BetResult;
 import org.julia.lab3.client.dto.CasinoAccount;
 
 public class CasinoClient {
+    protected static final String LOST_MESSAGE = "You lost this time";
     private static String HOST = "http://95.217.177.249/";
     private final String playerId;
 
