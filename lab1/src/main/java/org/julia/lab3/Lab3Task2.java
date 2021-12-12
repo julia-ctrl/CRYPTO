@@ -25,7 +25,7 @@ public class Lab3Task2 {
         }
 
         if (mtOnServer == null) {
-            throw new RuntimeException("was not bale to find");
+            throw new RuntimeException("was not able to find");
         }
 
         long money;

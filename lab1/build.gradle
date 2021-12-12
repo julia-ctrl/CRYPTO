@@ -1,6 +1,8 @@
 plugins {
     id 'java-library'
     id 'idea'
+    id "org.springframework.boot" version "2.4.4"
+    id 'io.spring.dependency-management' version "1.0.11.RELEASE"
 }
 
 repositories {
@@ -26,7 +28,16 @@ idea {
 dependencies {
     implementation 'commons-codec:commons-codec:1.15'
     implementation 'org.apache.httpcomponents:httpclient:4.5.13'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
     implementation 'org.apache.commons:commons-math3:3.6.1'
     implementation 'com.opencsv:opencsv:5.5.2'
+
+    //Spring boot dependencies for lab 5-6
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'javax.servlet:jstl'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'com.h2database:h2:2.0.202'
+
+
 }
