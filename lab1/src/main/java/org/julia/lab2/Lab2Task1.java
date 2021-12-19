@@ -31,10 +31,10 @@ public class Lab2Task1 {
         //`ative hue of resolution` ->  ' wrong, the proud man's' so next try ` wrong, the proud man's `
         //found `f might his quietus make` google `might his quietus make` found `when he himself might his quietus make`
         //found http://www.poetarium.info/sheakspear/tobe_nabokov.htm `To be or not to be`
-        //we have `th'oppressor's wrong, the proud man's `
+        //----FILNAL STRING ---- `th'oppressor's wrong, the proud man's `
         //and from site above `The oppressor's wrong, the proud man's contumely,` (longest string)
         //so try `th'oppressor's wrong, the proud man's contumely,`
-        byte[] encodingCribWord = "th'oppressor's wrong, the proud man's contumely,".getBytes(StandardCharsets.UTF_8);
+        byte[] encodingCribWord = " action".getBytes(StandardCharsets.UTF_8);
         for (int i = 0; i < encodedByteArrays.size() - 1; i++) {
             for (int j = i + 1; j < encodedByteArrays.size(); j++) {
                 byte[] firstCiphertext = encodedByteArrays.get(i);
